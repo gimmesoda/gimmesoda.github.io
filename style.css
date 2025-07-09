@@ -1,0 +1,201 @@
+:root {
+	--color-bg: #0d1b2a;
+	--color-surface: #1b263b;
+	--color-accent: #4db6ac;
+	--color-accent-light: #80cbc4;
+	--color-text-primary: #e0e1dd;
+	--color-text-secondary: #778da9;
+
+	--border-width: 1px;
+	--transition-duration: 0.4s;
+	--border-radius: 4px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Inter', -apple-system, sans-serif;
+	background: var(--color-bg);
+	color: var(--color-text-primary);
+	line-height: 1.6;
+	min-height: 100vh;
+	padding: 3rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-image:
+		radial-gradient(circle at 10% 20%, rgba(27, 38, 59, 0.5) 0%, transparent 20%),
+		radial-gradient(circle at 90% 80%, rgba(27, 38, 59, 0.3) 0%, transparent 20%);
+}
+
+.container {
+	max-width: 700px;
+	width: 100%;
+	margin: 0 auto;
+	animation: fadeIn 1s ease-out;
+	background: var(--color-surface);
+	padding: 3rem;
+	border-radius: var(--border-radius);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(128, 203, 196, 0.1);
+}
+
+h1 {
+	font-size: clamp(2.5rem, 5vw, 3.5rem);
+	color: var(--color-accent-light);
+	margin-bottom: 2rem;
+	position: relative;
+	display: inline-block;
+	cursor: default;
+	font-weight: 700;
+	letter-spacing: -0.5px;
+}
+
+h1::after {
+	content: '';
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 40%;
+	height: 3px;
+	background: var(--color-accent);
+	transition:
+		width var(--transition-duration) cubic-bezier(0.22, 0.61, 0.36, 1),
+		background-color 0.3s ease;
+	transform-origin: left;
+}
+
+h1:hover::after {
+	width: 100%;
+	background-color: var(--color-accent-light);
+	transition-delay: 0.05s;
+}
+
+p {
+	font-size: 1.1rem;
+	margin-bottom: 1.5rem;
+	color: var(--color-text-secondary);
+	line-height: 1.8;
+}
+
+strong {
+	color: var(--color-accent-light);
+	font-weight: 600;
+	position: relative;
+}
+
+em {
+	font-style: normal;
+	position: relative;
+	color: var(--color-accent-light);
+}
+
+em::before {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: var(--border-width);
+	background: var(--color-accent-light);
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform var(--transition-duration) ease;
+}
+
+em:hover::before {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+hr {
+	border: 0;
+	height: var(--border-width);
+	background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+	margin: 2.5rem 0;
+	opacity: 0.3;
+}
+
+.footer {
+	text-align: center;
+	margin-top: 3rem;
+	color: var(--color-text-secondary);
+	font-size: 0.9rem;
+	padding-top: 1.5rem;
+	border-top: var(--border-width) solid rgba(119, 141, 169, 0.2);
+	width: 100%;
+}
+
+.error-container {
+	text-align: center;
+	padding: 4rem 2rem;
+	background: var(--color-surface);
+	border-radius: var(--border-radius);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(128, 203, 196, 0.1);
+}
+
+.error-container h1 {
+	font-size: clamp(3rem, 8vw, 5rem);
+	margin-bottom: 1rem;
+	color: var(--color-accent-light);
+}
+
+.error-container h1::after {
+	display: none;
+}
+
+.error-container p {
+	font-size: 1.2rem;
+	max-width: 500px;
+	margin: 0 auto 2rem;
+}
+
+.error-container a {
+	color: var(--color-accent-light);
+	text-decoration: none;
+	border-bottom: 1px dotted var(--color-accent);
+	transition: all 0.3s ease;
+}
+
+.error-container a:hover {
+	color: var(--color-accent);
+	border-bottom-style: solid;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (hover: hover) {
+	a, em {
+		transition: all var(--transition-duration) ease;
+	}
+
+	em:hover {
+		color: var(--color-accent);
+		cursor: pointer;
+	}
+}
+
+@keyframes glow {
+	0% { text-shadow: 0 0 5px rgba(77, 182, 172, 0.3); }
+	50% { text-shadow: 0 0 15px rgba(77, 182, 172, 0.6); }
+	100% { text-shadow: 0 0 5px rgba(77, 182, 172, 0.3); }
+}
+
+h1, strong, em {
+	animation: glow 4s infinite ease-in-out;
+}
